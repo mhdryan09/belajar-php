@@ -1,4 +1,15 @@
 <?php
+// jalankan session
+session_start();
+
+// apakah session dgn keyword login ada 
+// jika tidak ada
+if (!isset($_SESSION['login'])) {
+  // pindahkan ke halaman login
+  header("Location: login.php");
+  exit;
+}
+
 // menghubungkan dgn halaman functions.php
 require 'functions.php';
 
@@ -23,6 +34,7 @@ if (isset($_POST['cari'])) {
 </head>
 
 <body>
+  <a href="logout.php">Logout</a>
   <h3>Daftar Mahasiswa</h3>
 
   <a href="tambah.php">Tambah Data Mahasiswa</a>

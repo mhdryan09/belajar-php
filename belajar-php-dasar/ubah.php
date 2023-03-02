@@ -1,4 +1,15 @@
 <?php
+// jalankan session
+session_start();
+
+// apakah session dgn keyword login ada 
+// jika tidak ada
+if (!isset($_SESSION['login'])) {
+  // pindahkan ke halaman login
+  header("Location: login.php");
+  exit;
+}
+
 require 'functions.php';
 
 // jika tidak ada id di url

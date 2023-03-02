@@ -127,3 +127,29 @@ function cari($keyword)
 
   return $rows;
 }
+
+// fungsi login
+function login($data)
+{
+  // koneksi database
+  $conn = koneksi();
+
+  // ambil inputan data dari form user
+  $username = htmlspecialchars($data['username']);
+  $password = htmlspecialchars($data['password']);
+
+  // cek apakah username dan password dari inputan sama dengan yg di tabel user
+  if (query("SELECT * FROM user WHERE username = '$username' && password = '$password'")) {
+
+    // set session
+    $_SESSION['login'] = true;
+
+    header("Location: index.php");
+    exit;
+  } else {
+    return [
+      'error' => true,
+      'pesan' => 'Username / Password Salah!'
+    ];
+  }
+}
