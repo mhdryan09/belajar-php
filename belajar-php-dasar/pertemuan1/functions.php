@@ -29,3 +29,29 @@ function query($query)
 
   return $rows;
 }
+
+// menerima data dari form
+function tambah($data)
+{
+  // koneksi database
+  $conn = koneksi();
+
+  // pecah data yang diambil dari database, masukan ke variabel
+  $nama = htmlspecialchars($data['nama']);
+  $nrp = htmlspecialchars($data['nrp']);
+  $email = htmlspecialchars($data['email']);
+  $jurusan = htmlspecialchars($data['jurusan']);
+  $gambar = htmlspecialchars($data['gambar']);
+
+  // query insert data
+  $query = "INSERT INTO
+              mahasiswa
+            VALUES 
+              (null, '$nama', '$nrp', '$email', '$jurusan', '$gambar')
+            ";
+
+  mysqli_query($conn, $query);
+
+  // ada baris yang berubah atau tidak 
+  return mysqli_affected_rows($conn);
+}
