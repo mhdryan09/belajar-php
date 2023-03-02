@@ -75,7 +75,6 @@ function ubah($data)
   // koneksi database
   $conn = koneksi();
 
-
   // pecah data yang diambil dari database, masukan ke variabel
   $nama = htmlspecialchars($data['nama']);
   $nrp = htmlspecialchars($data['nrp']);
@@ -99,4 +98,32 @@ function ubah($data)
 
   // ada baris yang berubah atau tidak 
   return mysqli_affected_rows($conn);
+}
+
+// mencari data berdasarkan keyword cari
+function cari($keyword)
+{
+  // koneksi database
+  $conn = koneksi();
+
+  $query = "SELECT * FROM mahasiswa
+            WHERE 
+            nama LIKE '%$keyword%' OR
+            nrp LIKE '%$keyword%' OR
+            email LIKE '%$keyword%'OR
+            jurusan LIKE '%$keyword%'
+            ";
+
+  $result = mysqli_query($conn, $query);
+
+  // variabel array kosong
+  $rows = [];
+  // ubah data ke dalam array 
+  // lakukan perulangan while untuk mengulang seberapa banyak datanya
+  while ($row = mysqli_fetch_assoc($result)) {
+    // masukan data ke variabel $rows
+    $rows[] = $row;
+  }
+
+  return $rows;
 }

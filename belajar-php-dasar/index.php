@@ -3,7 +3,13 @@
 require 'functions.php';
 
 // mengirimkan query select
-$mahasiswa = query("SELECT * FROM mahasiswa")
+$mahasiswa = query("SELECT * FROM mahasiswa");
+
+// ketika tombol cari di klik
+if (isset($_POST['cari'])) {
+  // ambil keyword lalu kirim ke fungsi cari
+  $mahasiswa = cari($_POST['keyword']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +28,13 @@ $mahasiswa = query("SELECT * FROM mahasiswa")
   <a href="tambah.php">Tambah Data Mahasiswa</a>
   <br><br>
 
+  <form action="" method="post">
+    <input type="text" name="keyword" size="30" placeholder="masukan keyword pencarian..." autocomplete="off" autofocus>
+    <button type="submit" name="cari">Cari</button>
+  </form>
+
+  <br>
+
   <table border="1" cellpadding="10" cellspacing="0">
     <tr>
       <th>No</th>
@@ -29,6 +42,15 @@ $mahasiswa = query("SELECT * FROM mahasiswa")
       <th>Nama</th>
       <th>Aksi</th>
     </tr>
+
+    <?php if (empty($mahasiswa)) : ?>
+      <tr>
+        <td colspan="4">
+          <p style="color: red; font-style: italic;">Data Mahasiswa tidak ditemukan!</p>
+        </td>
+      </tr>
+    <?php endif; ?>
+
     <tr>
       <?php $i = 1; ?>
       <?php foreach ($mahasiswa as $m) : ?>
