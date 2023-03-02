@@ -33,7 +33,7 @@ $mahasiswa = query("SELECT * FROM mahasiswa")
       <?php $i = 1; ?>
       <?php foreach ($mahasiswa as $m) : ?>
         <td><?= $i++; ?></td>
-        <td><img src="../pertemuan1/img/<?= $m["gambar"] ?>" alt="gambar1" width="60"></td>
+        <td><img src="img/<?= $m["gambar"] ?>" alt="gambar1" width="60"></td>
         <td><?= $m["nama"] ?></td>
         <td>
           <a href="detail.php?id=<?= $m['id']; ?>">lihat detail</a>

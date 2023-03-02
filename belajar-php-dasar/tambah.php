@@ -5,10 +5,11 @@ require 'functions.php';
 if (isset($_POST['tambah'])) {
 
   // ambil semua data dan kirim ke function tambah
+  // gunakan $_POST, karena kita mau mengirimkan data
   if (tambah($_POST) > 0) {
     echo "<script>
         alert('data berhasil ditambahkan!');
-        document.location.href = 'latihan2.php';
+        document.location.href = 'index.php';
         </script>
     ";
   } else {

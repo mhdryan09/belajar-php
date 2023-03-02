@@ -50,7 +50,52 @@ function tambah($data)
               (null, '$nama', '$nrp', '$email', '$jurusan', '$gambar')
             ";
 
-  mysqli_query($conn, $query);
+  mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+  // ada baris yang berubah atau tidak 
+  return mysqli_affected_rows($conn);
+}
+
+// menerima id dari hapus.php
+function hapus($id)
+{
+  // koneksi database
+  $conn = koneksi();
+
+  // query delete
+  mysqli_query($conn, "DELETE FROM mahasiswa WHERE id = $id") or die(mysqli_error($conn));
+
+  // ada baris yang berubah atau tidak 
+  return mysqli_affected_rows($conn);
+}
+
+// menerima data iputan dari form
+function ubah($data)
+{
+  // koneksi database
+  $conn = koneksi();
+
+
+  // pecah data yang diambil dari database, masukan ke variabel
+  $nama = htmlspecialchars($data['nama']);
+  $nrp = htmlspecialchars($data['nrp']);
+  $email = htmlspecialchars($data['email']);
+  $jurusan = htmlspecialchars($data['jurusan']);
+  $gambar = htmlspecialchars($data['gambar']);
+  // tangkap id
+  $id = $data['id'];
+
+  // query update data
+  $query = "UPDATE mahasiswa SET
+              nama = '$nama',
+              nrp = '$nrp',
+              email = '$email',
+              jurusan = '$jurusan',
+              gambar = '$gambar'
+            WHERE id = '$id'
+            ";
+
+  mysqli_query($conn, $query) or die(mysqli_error($conn));
 
   // ada baris yang berubah atau tidak 
   return mysqli_affected_rows($conn);
