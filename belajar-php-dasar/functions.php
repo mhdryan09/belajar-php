@@ -42,11 +42,11 @@ function upload()
 
   // ketika tidak ada gambar yang dipilih
   if ($error == 4) {
-    echo "<script>
-      alert('pilih gambar terlebih dahulu');
-    </script>
-    ";
-    return false;
+    // echo "<script>
+    //   alert('pilih gambar terlebih dahulu');
+    // </script>
+    // ";
+    return 'nophoto.jpg';
   }
 
   // cek esktensi file
@@ -140,6 +140,15 @@ function hapus($id)
   // koneksi database
   $conn = koneksi();
 
+  // query ambil data
+  $mhs = query("SELECT * FROM mahasiswa WHERE id = $id");
+
+  // jika gambar nya bukan nophoto, baru lakuin hapus, karena nophoto, adalah gambar default kita
+  if ($mhs['gambar'] != 'nophoto.jpg') {
+    // menghapus gambar di folder img
+    unlink('img/' . $mhs['gambar']);
+  }
+
   // query delete
   mysqli_query($conn, "DELETE FROM mahasiswa WHERE id = $id") or die(mysqli_error($conn));
 
@@ -158,9 +167,24 @@ function ubah($data)
   $nrp = htmlspecialchars($data['nrp']);
   $email = htmlspecialchars($data['email']);
   $jurusan = htmlspecialchars($data['jurusan']);
-  $gambar = htmlspecialchars($data['gambar']);
+  // $gambar = htmlspecialchars($data['gambar']);
+  $gambar_lama = htmlspecialchars($data['gambar_lama']);
   // tangkap id
   $id = $data['id'];
+
+  // upload gambar
+  $gambar = upload();
+
+  // jika error, atau yg di upload bukan gambar
+  if (!$gambar) {
+    return false;
+  }
+
+  // jika user tidak ingin mengupdate gambar
+  if ($gambar == 'nophoto.jpg') {
+    // timpa dgn gambar lama
+    $gambar = $gambar_lama;
+  }
 
   // query update data
   $query = "UPDATE mahasiswa SET

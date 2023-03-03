@@ -31,3 +31,19 @@ keyword.addEventListener('keyup', function () {
     .then((response) => response.text()) // ambil resonse text
     .then((response) => (container.innerHTML = response)); // ubah isi container, dgn apapun yg ada dari response ajaxnya
 });
+
+
+// Preview Image untuk tambah dan ubah
+function previewImage() {
+  const gambar = document.querySelector('.gambar');
+  const imgPreview = document.querySelector('.img-preview');
+
+  // memanggil fungsi untuk membaca file gambar
+  const oFReader = new FileReader();
+  oFReader.readAsDataURL(gambar.files[0]);
+
+  oFReader.onload = function (oFREvent) {
+    // source default akan diganti dgn gambar baru
+    imgPreview.src = oFREvent.target.result;
+  };
+}

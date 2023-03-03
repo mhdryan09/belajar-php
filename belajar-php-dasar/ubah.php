@@ -54,7 +54,7 @@ if (isset($_POST['ubah'])) {
 
 <body>
   <h3>Form Ubah Data Mahasiswa</h3>
-  <form action="" method="post">
+  <form action="" method="post" enctype="multipart/form-data">
     <!-- input id dgn tipe hidden -->
     <input type="hidden" name="id" value="<?= $mhs['id']; ?>">
     <ul>
@@ -83,16 +83,23 @@ if (isset($_POST['ubah'])) {
         </label>
       </li>
       <li>
+        <!-- untuk menyimpan gambar lama, 
+            mengantisipasi kalau user tidak ingin mengganti gambar
+        -->
+        <input type="hidden" name="gambar_lama" value="<?= $mhs['gambar']; ?>">
         <label>
           Gambar :
-          <input type="text" name="gambar" required value="<?= $mhs['gambar']; ?>">
+          <input type="file" name="gambar" class="gambar" onchange="previewImage()">
         </label>
+        <!-- preview gambar  -->
+        <img src="img/<?= $mhs['gambar']; ?>" alt="gambar" width="120" style="display: block;" class="img-preview">
       </li>
       <li>
         <button type="submit" name="ubah">Ubah Data</button>
       </li>
     </ul>
   </form>
+  <script src="js/script.js"></script>
 </body>
 
 </html>
