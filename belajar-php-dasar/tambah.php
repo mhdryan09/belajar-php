@@ -24,7 +24,10 @@ if (isset($_POST['tambah'])) {
         </script>
     ";
   } else {
-    echo "data gagal ditambahkan";
+    echo "<script>
+    alert('data gagal ditambahkan!');
+    </script>
+    ";
   }
 }
 ?>
@@ -42,7 +45,7 @@ if (isset($_POST['tambah'])) {
 
 <body>
   <h3>Form Tambah Data Mahasiswa</h3>
-  <form action="" method="post">
+  <form action="" method="post" enctype="multipart/form-data">
     <ul>
       <li>
         <label>
@@ -71,7 +74,7 @@ if (isset($_POST['tambah'])) {
       <li>
         <label>
           Gambar :
-          <input type="text" name="gambar" required>
+          <input type="file" name="gambar">
         </label>
       </li>
       <li>
