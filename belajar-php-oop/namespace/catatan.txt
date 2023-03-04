@@ -1,0 +1,20 @@
+== Namespace ==
+
+Namespace secara sederhana, adalah sebuah cara untuk mengelompokkan program ke dalam sebuah package tersendiri atau menjadikan bagian yang memiliki identitas tersendiri.
+
+Teknik ini juga disebut sebagai teknik encapsulation
+
+Mengapa program yang kita buat ini, nanti nya harus kita kelompokkan?
+Alasan nya adalah PHP tidak mengijinkan kita untuk memiliki 2 class dengan nama yang sama. Jadi jika di dalam program kita, memiliki file dengan nama yang sama, maka nanti akan terjadi error
+
+Hal ini tidak akan jadi masalah bila bekerja sendiri, karena kita tahu class yang sudah kita buat itu nama nya apa. Berbeda dengan bekerja bersama tim, jika dalam tim, kita harus tau cara penamaan class dalam pembuatan program.
+
+Bagaimana jika kita menggunakan script/library dari pihak ke tiga?
+Kalau begini, maka kita harus tau nama class nya apa, sehingga kita tidak membuat dengan nama class yang sama.
+
+Disinilah kita membutuhkan teknik namespace, supaya nanti ketika kita membuat sebuah class dengan nama yang sama, maka program nya secara keseluruhan masih bisa mengidentifikasi kalau ini tuh beda, dapat membedakan file ini punya nya siapa.
+
+penulisan namespace :
+  namespace Vendor\Namespace\SubNamespace;
+
+Vendor bisa disebut sebagai pembuatnya siapa/nama aplikasinya, di ikuti namespace yang berarti nama namespace nya dan tambahan subnamespace
