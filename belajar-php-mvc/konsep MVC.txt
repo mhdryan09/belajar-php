@@ -1,0 +1,36 @@
+== MVC ==
+
+MODEL - VIEW - CONTROLLER
+
+MVC adalah sebuah Pola arsitektur pada perancangan perangkat lunak berorientasi objek.
+
+Tujuan : untuk memisahkan antara tampilan, data dan proses.
+
+Model 	=> Data
+Controller 	=> Proses
+View 		=> Tampilan
+
+1. Model
+	- Representasi Pengetahuan
+	- Mengelola data
+	- Logika Bisnis
+
+2. View
+	- Output, apa yang dilihat oleh user
+	- Representasi visual dari model
+	- Lapisan persentasi
+
+3. Controller 
+	- Perantara antara model dan view
+	- Menangani pemrosesan pada aplikasi
+	- Menangani aksi dari user
+
+
+Kenapa pakai MVC?
+- Organisasi dan Struktur Kode
+- Pemisahan Logic dan tampilan
+- Mempermudah dalam perawatan kode
+- Implementasi konsep OOP yang sudah kita pelajari
+- Digunakan oleh banyak Web Application Framework
+
+ 
