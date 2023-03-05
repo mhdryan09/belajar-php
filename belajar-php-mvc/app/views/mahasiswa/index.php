@@ -1,8 +1,15 @@
 <div class="container mt-3">
+
   <div class="row">
-    <div class="col-6">
+    <div class="col-lg-6">
+      <?= Flasher::flash(); ?>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formModal">
+      <button type="button" class="btn btn-primary tombolTambahData" data-toggle="modal" data-target="#formModal">
         Tambah Data Mahasiswa
       </button> <br><br>
 
@@ -13,6 +20,7 @@
           <li class="list-group-item">
             <?= $mhs['nama']; ?>
             <a href="<?= BASE_URL; ?>/mahasiswa/hapus/<?= $mhs['id']; ?>" class="badge badge-danger ml-1 float-right" onclick="return confirm('Apakah Anda Yakin?')">hapus</a>
+            <a href="<?= BASE_URL; ?>/mahasiswa/ubah/<?= $mhs['id']; ?>" class="badge badge-success ml-1 float-right tampilModalUbah" data-toggle="modal" data-target="#formModal" data-id="<?= $mhs['id']; ?>">ubah</a>
             <a href="<?= BASE_URL; ?>/mahasiswa/detail/<?= $mhs['id']; ?>" class="badge badge-primary ml-1 float-right">detail</a>
           </li>
         <?php endforeach; ?>
@@ -23,17 +31,18 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="judulModal" aria-hidden="true">
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="judulModal">Tambah Data Mahasiswa</h5>
+        <h5 class="modal-title" id="formModalLabel">Tambah Data Mahasiswa</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form action="<?= BASE_URL; ?>/mahasiswa/tambah" method="POST">
+          <input type="hidden" name="id" id="id">
           <div class="form-group">
             <label for="nama">Nama</label>
             <input type="text" class="form-control" id="nama" name="nama">

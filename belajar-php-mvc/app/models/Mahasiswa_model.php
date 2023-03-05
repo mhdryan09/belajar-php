@@ -75,4 +75,36 @@ class Mahasiswa_model
     // kembalikan jika ada baris yg berubah
     return $this->db->rowCount();
   }
+
+  // fungsi untuk proses ubah data
+  // dan menerima data yg dikirim dari controller
+  public function ubahDataMahasiswa($data)
+  {
+    // query update data
+    // kita gunakan binding data di dalamnya
+    $query = "UPDATE mahasiswa SET
+              nama = :nama,
+              nim = :nim,
+              email = :email,
+              jurusan = :jurusan
+            WHERE id = :id";
+
+    // jalankan method query
+    $this->db->query($query);
+
+    // binding data
+    $this->db->bind('nama', $data['nama']);
+    // $data['nama']; itu nama, kita dapatkan dari name di form inputannya
+    $this->db->bind('nim', $data['nim']);
+    $this->db->bind('email', $data['email']);
+    $this->db->bind('jurusan', $data['jurusan']);
+    $this->db->bind('id', $data['id']);
+
+    // eksekusi query
+    $this->db->execute();
+
+    // kita butuh kembalikan nilai berupa angka, yaitu berapa baris yang terpengaruhi
+    // jadi kita bisa gunakan method rowCount dari Database.php
+    return $this->db->rowCount();
+  }
 }
