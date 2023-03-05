@@ -60,4 +60,19 @@ class Mahasiswa_model
     // jadi kita bisa gunakan method rowCount dari Database.php
     return $this->db->rowCount();
   }
+
+  // fungsi untuk proses hapus data
+  public function hapusDataMahasiswa($id)
+  {
+    // :id adalah cara binding 
+    $query = "DELETE FROM mahasiswa WHERE id = :id";
+    // jalankan query
+    $this->db->query($query);
+    // binding data id dari query, dan param
+    $this->db->bind('id', $id);
+    // eksekusi
+    $this->db->execute();
+    // kembalikan jika ada baris yg berubah
+    return $this->db->rowCount();
+  }
 }
