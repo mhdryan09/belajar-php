@@ -92,4 +92,11 @@ class Database
     // kembalikan data dalam bentuk array associative
     return $this->stmt->fetch(PDO::FETCH_ASSOC);
   }
+
+  // method untuk mengetahui ada berapa baris yang berubah di dalam tabel nya
+  public function rowCount()
+  {
+    // jalankan rowCount() milik PDO
+    return $this->stmt->rowCount();
+  }
 }

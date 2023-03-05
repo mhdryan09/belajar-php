@@ -22,4 +22,16 @@ class Mahasiswa extends Controller
     $this->view('mahasiswa/detail', $data);
     $this->view('templates/footer');
   }
+
+  // fungsi untuk proses tambah data
+  public function tambah()
+  {
+    // panggil model dan jalankan method tambahDataMahasiswa
+    // lalu jika ada baris yg berubah
+    if ($this->model('Mahasiswa_model')->tambahDataMahasiswa($_POST) > 0) {
+      // arahkan ke halaman mahasiswa
+      header("Location: " . BASE_URL . '/mahasiswa');
+      exit;
+    }
+  }
 }
