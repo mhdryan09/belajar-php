@@ -93,4 +93,15 @@ class Mahasiswa extends Controller
       exit;
     }
   }
+
+  // method untuk proses cari data mahasiswa
+  public function cari()
+  {
+    $data['judul'] = 'Daftar Mahasiwa';
+    // panggil model dan jalankan method cariDataMahasiswa
+    $data['mhs'] = $this->model('Mahasiswa_model')->cariDataMahasiswa();
+    $this->view('templates/header', $data);
+    $this->view('mahasiswa/index', $data);
+    $this->view('templates/footer');
+  }
 }

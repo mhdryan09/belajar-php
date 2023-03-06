@@ -107,4 +107,19 @@ class Mahasiswa_model
     // jadi kita bisa gunakan method rowCount dari Database.php
     return $this->db->rowCount();
   }
+
+  // fungsi untuk proses cari data
+  public function cariDataMahasiswa()
+  {
+    // ambil data keyword yg dikirimkan 
+    $keyword = $_POST['keyword'];
+    $query = "SELECT * FROM mahasiswa WHERE nama LIKE :keyword";
+
+    // jalankan query
+    $this->db->query($query);
+    // binding data
+    $this->db->bind('keyword', "%$keyword%");
+    // kembalikan semua data nya
+    return $this->db->resultSet();
+  }
 }
